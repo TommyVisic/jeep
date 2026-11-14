@@ -1,17 +1,16 @@
 {
-  "title": "2015 Make Model Trim test",
-  "price": "$12,500",
+  "title": "1984 Jeep CJ7 Renegade",
+  "price": "$19,900",
   "photos": [
     "photos/20261107092226-1.jpg"
   ],
   "specs": [
     {
-      "label": "Mileage",
-      "value": "98,000 mi"
+      "value": "144,000 mi"
     },
     {
       "label": "Engine",
-      "value": "2.0L I4"
+      "value": "4.0 L transplanted from 2004 Jeep "
     },
     {
       "label": "Transmission",
