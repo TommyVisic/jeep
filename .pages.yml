@@ -15,13 +15,21 @@ content:
       - name: price
         label: Price
         type: string
-      - name: photos
-        label: Photos (the first one is the big cover photo)
-        type: image
-        options:
-          multiple:
-            max: 40
-          rename: true
+      - name: sections
+        label: Photo sections (first photo of the first section is the cover)
+        type: object
+        list: true
+        fields:
+          - name: heading
+            label: Section heading (e.g. Exterior)
+            type: string
+          - name: photos
+            label: Photos
+            type: image
+            options:
+              multiple:
+                max: 40
+              rename: true
       - name: specs
         label: Details
         type: object

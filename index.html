@@ -79,10 +79,7 @@
     <p class="notes" id="description"></p>
   </section>
 
-  <section>
-    <h2>Photos</h2>
-    <div class="gallery" id="gallery"></div>
-  </section>
+  <div id="galleries"></div>
 
   <section>
     <h2>Interested?</h2>
@@ -114,7 +111,10 @@
   const src = p => String(p).replace(/^\/+/, '');   // keep paths relative
 
   fetch('content.json', { cache: 'no-cache' }).then(r => r.json()).then(d => {
-    const photos = (d.photos || []).map(src);
+    // Photo sections; falls back to the old single "photos" list if no sections exist yet.
+    const sections = (d.sections && d.sections.length) ? d.sections
+                   : [{ heading: 'Photos', photos: d.photos || [] }];
+    const photos = sections.flatMap(s => (s.photos || []).map(src));
     document.title = `${d.title} — ${d.price}`;
     $('title').textContent = d.title || '';
     $('price').textContent = d.price || '';
@@ -126,11 +126,17 @@
     $('phone').href = `sms:${digits}`;
     (d.specs || []).forEach(s => $('specs').appendChild(
       el('div', { className: 'spec' }, [el('span', { textContent: s.label }), el('strong', { textContent: s.value })])));
-    photos.forEach((p, n) => {
-      const a = el('a', { href: p }, [el('img', { src: p, alt: '', loading: 'lazy' })]);
-      a.addEventListener('click', e => { e.preventDefault(); show(n); lb.showModal(); });
-      $('gallery').appendChild(a);
-      links.push(a);
+    sections.forEach(s => {
+      const grid = el('div', { className: 'gallery' });
+      (s.photos || []).map(src).forEach(p => {
+        const n = links.length;
+        const a = el('a', { href: p }, [el('img', { src: p, alt: '', loading: 'lazy' })]);
+        a.addEventListener('click', e => { e.preventDefault(); show(n); lb.showModal(); });
+        grid.appendChild(a);
+        links.push(a);
+      });
+      if (grid.children.length)
+        $('galleries').appendChild(el('section', {}, [el('h2', { textContent: s.heading || '' }), grid]));
     });
   });
 
