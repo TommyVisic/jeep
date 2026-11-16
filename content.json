@@ -1,8 +1,22 @@
 {
   "title": "1984 Jeep CJ7 Renegade",
   "price": "$19,900",
-  "photos": [
-    "photos/20261107092226-1.jpg"
+  "sections": [
+    {
+      "heading": "My section 1",
+      "photos": [
+        "photos/20261107092226-1.jpg",
+        "photos/20261107110733.jpg"
+      ]
+    },
+    {
+      "heading": "My second section",
+      "photos": [
+        "photos/20261107110348.jpg",
+        "photos/20261107125201.jpg",
+        "photos/felissilvestrissilvestrissmallgradualdecreaseofquality-1.png"
+      ]
+    }
   ],
   "specs": [
     {
